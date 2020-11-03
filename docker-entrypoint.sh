@@ -47,10 +47,15 @@ pandoc -v
 echo -ne "${BOLD}Babel: ${PLAIN}"
 babel --version
 
+if [ "${INPUT_ACTOR}" ]; then
+  ACTOR=${INPUT_ACTOR}
+else
+  ACTOR=${GITHUB_ACTOR}
+fi
 
 echo -e "\n${BOLD}Setting up Git${PLAIN}"
-git config --global user.name "${GITHUB_ACTOR}"
-git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+git config --global user.name "${ACTOR}"
+git config --global user.email "${ACTOR}@users.noreply.github.com"
 echo "machine github.com login ${GITHUB_ACTOR} password ${INPUT_GITHUBTOKEN}" > ~/.netrc
 
 git clone --depth=1 --single-branch --branch "${INPUT_BRANCH}" "https://x-access-token:${INPUT_GITHUBTOKEN}@github.com/${REPO}.git" /tmp/gh-pages

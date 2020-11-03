@@ -33,6 +33,10 @@ inputs:
     description: "Directory for Hugo Site (if it's not the root of the repo)"
     required: false
 
+  actor:
+    description: "Account to commit"
+    required: false
+
 runs:
   using: 'docker'
 #  image: 'docker://docker.pkg.github.com/chabad360/hugo-gh-pages/hugo'
